@@ -2,20 +2,11 @@ import requests
 
 def get_exchange_rate(from_currency, to_currency):
     try:
-        url = f"https://open.er-api.com/v6/latest/{from_currency}"
-
-        response = requests.get(url, timeout=10)
+        url = f"https://api.fxratesapi.com/latest?base={from_currency}&symbols={to_currency}"
+        response = requests.get(url, timeout=5)
         data = response.json()
 
-        if data["result"] == "success":
-            rates = data["rates"]
-            return rates.get(to_currency, None)
+        return data["rates"][to_currency]
 
+    except:
         return None
-
-    except Exception as e:
-        print("ERROR:", e)
-        return None
-
-
-print(get_exchange_rate("USD", "PKR"))
