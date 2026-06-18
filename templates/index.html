@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currency Exchange Tracker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        button {
+            width: 95%;
+            padding: 10px;
+            background: #00c6ff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0072ff;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .box {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💱 Currency Exchange Tracker</h1>
+
+    <form method="POST">
+        <div class="box">
+            <input name="from_currency" placeholder="From Currency (e.g. USD)">
+        </div>
+
+        <div class="box">
+            <input name="to_currency" placeholder="To Currency (e.g. PKR)">
+        </div>
+
+        <div class="box">
+            <input name="amount" placeholder="Amount">
+        </div>
+
+        <button type="submit">Convert</button>
+    </form>
+
+    {% if result %}
+        <div class="result">
+            Result: {{ result }}
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,46 +1,26 @@
+from flask import Flask, render_template, request
 from api import get_exchange_rate
 from converter import convert_currency
 from history import save_history
 
-def main():
-    print("===== LIVE CURRENCY EXCHANGE TRACKER =====")
+app = Flask(__name__)
 
-    while True:
-        print("\n1. Convert Currency")
-        print("2. Exit")
+@app.route("/", methods=["GET", "POST"])
+def home():
+    result = None
 
-        choice = input("Enter choice: ")
+    if request.method == "POST":
+        from_currency = request.form["from_currency"]
+        to_currency = request.form["to_currency"]
+        amount = float(request.form["amount"])
 
-        if choice == "1":
-            from_currency = input("From currency (USD): ").upper()
-            to_currency = input("To currency (PKR): ").upper()
+        rate = get_exchange_rate(from_currency, to_currency)
 
-            try:
-                amount = float(input("Amount: "))
-            except:
-                print("Invalid amount")
-                continue
-
-            rate = get_exchange_rate(from_currency, to_currency)
-
-            if rate is None:
-                print("Rate not found")
-                continue
-
+        if rate:
             result = convert_currency(amount, rate)
-
-            print(f"\n1 {from_currency} = {rate} {to_currency}")
-            print(f"{amount} {from_currency} = {result} {to_currency}")
-
             save_history(f"{amount} {from_currency} = {result} {to_currency}")
 
-        elif choice == "2":
-            print("Goodbye 👋")
-            break
-
-        else:
-            print("Invalid choice")
-
+    return render_template("index.html", result=result)
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)
