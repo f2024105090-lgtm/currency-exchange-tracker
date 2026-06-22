@@ -1,91 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Currency Exchange Tracker</title>
+    <title>Currency Converter</title>
 
     <style>
         body {
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             background: linear-gradient(to right, #1e3c72, #2a5298);
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
 
-        .container {
+        .box {
             background: white;
             padding: 30px;
             border-radius: 15px;
             width: 350px;
             text-align: center;
-            box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        input, select {
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        select, input {
             width: 90%;
             padding: 10px;
-            margin: 8px 0;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
         }
 
         button {
-            background: #2a5298;
-            color: white;
-            border: none;
+            width: 95%;
             padding: 10px;
-            width: 100%;
             margin-top: 10px;
-            cursor: pointer;
+            border: none;
             border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
         }
 
-        button:hover {
+        .convert-btn {
+            background: #2a5298;
+            color: white;
+        }
+
+        .convert-btn:hover {
             background: #1e3c72;
+        }
+
+        .history-btn {
+            background: #555;
+            color: white;
+        }
+
+        .history-btn:hover {
+            background: #333;
         }
 
         .result {
             margin-top: 15px;
             font-weight: bold;
         }
+
+        .rate {
+            margin-top: 10px;
+            color: green;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="box">
 
     <h2>💱 Currency Converter</h2>
 
     <form method="POST">
 
         <select name="from_currency">
-            <option value="USD">USD</option>
-            <option value="PKR">PKR</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="INR">INR</option>
+            {% for code in currencies.keys() %}
+                <option value="{{ code }}">{{ code }}</option>
+            {% endfor %}
         </select>
 
         <select name="to_currency">
-            <option value="PKR">PKR</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="INR">INR</option>
+            {% for code in currencies.keys() %}
+                <option value="{{ code }}">{{ code }}</option>
+            {% endfor %}
         </select>
 
         <input type="number" name="amount" placeholder="Enter amount" required>
 
-        <button type="submit">Convert</button>
+        <button class="convert-btn" type="submit">Convert</button>
 
         <a href="/history">
-            <button type="button">View History</button>
+            <button class="history-btn" type="button">View History</button>
         </a>
 
     </form>
 
     {% if live_rate %}
-        <p>💱 1 {{ from_currency }} = {{ live_rate }} {{ to_currency }}</p>
+        <div class="rate">
+            1 {{ from_currency }} = {{ live_rate }} {{ to_currency }}
+        </div>
     {% endif %}
 
     {% if result %}

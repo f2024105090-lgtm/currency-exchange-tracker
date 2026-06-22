@@ -7,14 +7,34 @@
         body {
             font-family: Arial;
             text-align: center;
+            background: #f4f4f4;
         }
 
-        .box {
-            background: #f2f2f2;
+        .card {
+            background: white;
             margin: 10px auto;
             padding: 10px;
-            width: 50%;
+            width: 60%;
             border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+
+        .btn {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .clear {
+            background: red;
+            color: white;
+        }
+
+        .back {
+            background: gray;
+            color: white;
         }
     </style>
 </head>
@@ -23,12 +43,24 @@
 
 <h1>Conversion History</h1>
 
-{% for record in records %}
-    <div class="box">{{ record }}</div>
-{% endfor %}
+<!-- CLEAR HISTORY BUTTON -->
+<a href="/clear-history">
+    <button class="btn clear">Clear History</button>
+</a>
 
-<br>
-<a href="/">Back</a>
+<a href="/">
+    <button class="btn back">Back</button>
+</a>
+
+<br><br>
+
+{% if records %}
+    {% for record in records %}
+        <div class="card">{{ record }}</div>
+    {% endfor %}
+{% else %}
+    <p>No history found.</p>
+{% endif %}
 
 </body>
 </html>
