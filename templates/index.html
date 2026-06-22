@@ -5,63 +5,47 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
+            font-family: Arial;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.1);
+            background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
             width: 350px;
             text-align: center;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
         }
 
-        h1 {
-            margin-bottom: 20px;
-            font-size: 22px;
-        }
-
-        input {
+        input, select {
             width: 90%;
             padding: 10px;
             margin: 8px 0;
-            border: none;
-            border-radius: 8px;
-            outline: none;
         }
 
         button {
-            width: 95%;
-            padding: 10px;
-            background: #00c6ff;
-            border: none;
-            border-radius: 8px;
+            background: #2a5298;
             color: white;
-            font-size: 16px;
-            cursor: pointer;
+            border: none;
+            padding: 10px;
+            width: 100%;
             margin-top: 10px;
+            cursor: pointer;
+            border-radius: 8px;
         }
 
         button:hover {
-            background: #0072ff;
+            background: #1e3c72;
         }
 
         .result {
-            margin-top: 20px;
-            font-size: 18px;
+            margin-top: 15px;
             font-weight: bold;
-        }
-
-        .box {
-            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -69,27 +53,44 @@
 <body>
 
 <div class="container">
-    <h1>💱 Currency Exchange Tracker</h1>
+
+    <h2>💱 Currency Converter</h2>
 
     <form method="POST">
-        <div class="box">
-            <input name="from_currency" placeholder="From Currency (e.g. USD)">
-        </div>
 
-        <div class="box">
-            <input name="to_currency" placeholder="To Currency (e.g. PKR)">
-        </div>
+        <select name="from_currency">
+            <option value="USD">USD</option>
+            <option value="PKR">PKR</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="INR">INR</option>
+        </select>
 
-        <div class="box">
-            <input name="amount" placeholder="Amount">
-        </div>
+        <select name="to_currency">
+            <option value="PKR">PKR</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="INR">INR</option>
+        </select>
+
+        <input type="number" name="amount" placeholder="Enter amount" required>
 
         <button type="submit">Convert</button>
+
+        <a href="/history">
+            <button type="button">View History</button>
+        </a>
+
     </form>
+
+    {% if live_rate %}
+        <p>💱 1 {{ from_currency }} = {{ live_rate }} {{ to_currency }}</p>
+    {% endif %}
 
     {% if result %}
         <div class="result">
-            Result: {{ result }}
+            {{ result }}
         </div>
     {% endif %}
 
