@@ -1,66 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>History</title>
-
-    <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            background: #f4f4f4;
-        }
-
-        .card {
-            background: white;
-            margin: 10px auto;
-            padding: 10px;
-            width: 60%;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px #ccc;
-        }
-
-        .btn {
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 5px;
-        }
-
-        .clear {
-            background: red;
-            color: white;
-        }
-
-        .back {
-            background: gray;
-            color: white;
-        }
-    </style>
+<title>History</title>
+<style>
+body{
+background:#0f2027;
+color:white;
+font-family:Segoe UI;
+padding:30px;
+}
+.box{
+background:rgba(255,255,255,0.08);
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+}
+a{
+color:#00c6ff;
+text-decoration:none;
+}
+</style>
 </head>
-
 <body>
 
-<h1>Conversion History</h1>
+<h1>Travel History</h1>
 
-<!-- CLEAR HISTORY BUTTON -->
-<a href="/clear-history">
-    <button class="btn clear">Clear History</button>
-</a>
+{% for file, data in records.items() %}
+<div class="box">
+<h2>{{ file }}</h2>
 
-<a href="/">
-    <button class="btn back">Back</button>
-</a>
-
-<br><br>
-
-{% if records %}
-    {% for record in records %}
-        <div class="card">{{ record }}</div>
-    {% endfor %}
+{% if data %}
+{% for item in data %}
+<p>{{ item }}</p>
+{% endfor %}
 {% else %}
-    <p>No history found.</p>
+<p>No history found</p>
 {% endif %}
+
+</div>
+{% endfor %}
+
+<a href="/dashboard">← Back to Dashboard</a>
 
 </body>
 </html>

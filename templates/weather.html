@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Checker</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.container{
+width:500px;
+padding:40px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+border-radius:25px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+outline:none;
+margin-top:15px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+border:none;
+border-radius:12px;
+background:#00c6ff;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.result{
+margin-top:25px;
+padding:20px;
+background:rgba(255,255,255,0.08);
+border-radius:15px;
+text-align:center;
+}
+
+.back{
+display:block;
+margin-top:20px;
+text-align:center;
+color:#00c6ff;
+text-decoration:none;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1><i class="fa-solid fa-cloud-sun"></i> Weather Checker</h1>
+
+<form action="/weather" method="POST">
+
+<input type="text" name="city" placeholder="Enter city (e.g. Lahore, Tokyo, Paris)" required>
+
+<button type="submit">Check Weather</button>
+
+</form>
+
+{% if weather_data %}
+<div class="result">
+<h2>Live Weather</h2>
+<p>🌡 Temperature: {{ weather_data.temperature }}°C</p>
+<p>💨 Wind Speed: {{ weather_data.windspeed }} km/h</p>
+<p>🕒 Time: {{ weather_data.time }}</p>
+</div>
+{% endif %}
+
+<a href="/dashboard" class="back">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

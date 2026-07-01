@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TravelMate</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+overflow-x:hidden;
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+margin-left:20px;
+font-size:17px;
+}
+
+.hero{
+height:90vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:50px;
+}
+
+.hero-left{
+width:50%;
+}
+
+.hero-left h1{
+font-size:65px;
+line-height:1.2;
+}
+
+.hero-left p{
+margin-top:20px;
+font-size:20px;
+opacity:0.8;
+}
+
+.hero-buttons{
+margin-top:30px;
+}
+
+.hero-buttons a{
+text-decoration:none;
+padding:15px 25px;
+border-radius:12px;
+margin-right:15px;
+font-weight:bold;
+}
+
+.btn1{
+background:#00c6ff;
+color:white;
+}
+
+.btn2{
+background:white;
+color:black;
+}
+
+.hero-right{
+width:50%;
+display:flex;
+justify-content:center;
+}
+
+.travel-card{
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(20px);
+padding:40px;
+border-radius:25px;
+width:350px;
+text-align:center;
+box-shadow:0px 10px 35px rgba(0,0,0,0.4);
+animation:float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0px);}
+}
+
+.features{
+padding:80px;
+text-align:center;
+}
+
+.features h2{
+font-size:40px;
+margin-bottom:40px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(15px);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card i{
+font-size:35px;
+margin-bottom:15px;
+}
+
+.about{
+padding:80px;
+text-align:center;
+}
+
+.about h2{
+font-size:40px;
+margin-bottom:20px;
+}
+
+.footer{
+text-align:center;
+padding:30px;
+opacity:0.7;
+}
+
+@media(max-width:900px){
+.hero{
+flex-direction:column;
+}
+
+.hero-left,.hero-right{
+width:100%;
+text-align:center;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+}
+
+</style>
+</head>
+<body>
+
+<div class="navbar">
+<div class="logo"><i class="fa-solid fa-plane"></i> TravelMate</div>
+
+<div class="nav-links">
+<a href="/login">Login</a>
+<a href="/signup">Sign Up</a>
+</div>
+</div>
+
+<div class="hero">
+
+<div class="hero-left">
+<h1>Travel Smarter With TravelMate</h1>
+<p>
+Plan your trips, track budgets, convert currencies,
+book hotels, explore flights, and get weather updates —
+all in one premium platform.
+</p>
+
+<div class="hero-buttons">
+<a href="/signup" class="btn1">Get Started</a>
+<a href="/login" class="btn2">Login</a>
+</div>
+</div>
+
+<div class="hero-right">
+<div class="travel-card">
+<h2>Smart Travel Ecosystem</h2>
+<br>
+<p>Flights</p>
+<p>Hotels</p>
+<p>Currency</p>
+<p>Weather</p>
+<p>Budget Planning</p>
+<p>Travel Packages</p>
+</div>
+</div>
+
+</div>
+
+<div class="features">
+<h2>Our Features</h2>
+
+<div class="cards">
+
+<div class="card">
+<i class="fa-solid fa-money-bill-transfer"></i>
+<h3>Currency Converter</h3>
+<p>Convert live currencies instantly.</p>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-cloud-sun"></i>
+<h3>Weather Forecast</h3>
+<p>Check live weather anywhere.</p>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-plane-departure"></i>
+<h3>Flights Finder</h3>
+<p>Find travel tickets and rates.</p>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-hotel"></i>
+<h3>Hotels Finder</h3>
+<p>Find hotels by country and city.</p>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-wallet"></i>
+<h3>Budget Planner</h3>
+<p>Manage trip expenses smartly.</p>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-box"></i>
+<h3>Travel Packages</h3>
+<p>Get travel suggestions based on budget.</p>
+</div>
+
+</div>
+</div>
+
+<div class="about">
+<h2>Why Choose TravelMate?</h2>
+<p>
+TravelMate combines everything a traveler needs into one system.
+From financial planning to real-time travel data, it provides
+a premium intelligent travel planning experience.
+</p>
+</div>
+
+<div class="footer">
+TravelMate © 2026 | Smart Travel Companion
+</div>
+
+</body>
+</html>

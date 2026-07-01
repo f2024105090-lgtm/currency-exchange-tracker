@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currency Converter</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#141E30,#243B55);
+color:white;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.container{
+width:500px;
+padding:40px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+border-radius:25px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+input,select{
+width:100%;
+padding:14px;
+margin-top:12px;
+border:none;
+border-radius:12px;
+outline:none;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+border:none;
+border-radius:12px;
+background:#00c6ff;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.result{
+margin-top:25px;
+padding:20px;
+background:rgba(255,255,255,0.08);
+border-radius:15px;
+text-align:center;
+}
+
+.back{
+display:block;
+margin-top:20px;
+text-align:center;
+color:#00c6ff;
+text-decoration:none;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1><i class="fa-solid fa-money-bill-transfer"></i> Currency Converter</h1>
+
+<form action="/currency" method="POST">
+
+<input type="number" step="0.01" name="amount" placeholder="Enter amount" required>
+
+<select name="from_currency">
+<option value="PKR">Pakistan (PKR)</option>
+<option value="USD">USA (USD)</option>
+<option value="EUR">Europe (EUR)</option>
+<option value="TRY">Turkey (TRY)</option>
+<option value="MYR">Malaysia (MYR)</option>
+<option value="SAR">Saudi Arabia (SAR)</option>
+<option value="GBP">UK (GBP)</option>
+<option value="JPY">Japan (JPY)</option>
+<option value="AED">UAE (AED)</option>
+<option value="CAD">Canada (CAD)</option>
+</select>
+
+<select name="to_currency">
+<option value="USD">USA (USD)</option>
+<option value="PKR">Pakistan (PKR)</option>
+<option value="EUR">Europe (EUR)</option>
+<option value="TRY">Turkey (TRY)</option>
+<option value="MYR">Malaysia (MYR)</option>
+<option value="SAR">Saudi Arabia (SAR)</option>
+<option value="GBP">UK (GBP)</option>
+<option value="JPY">Japan (JPY)</option>
+<option value="AED">UAE (AED)</option>
+<option value="CAD">Canada (CAD)</option>
+</select>
+
+<button type="submit">Convert</button>
+
+</form>
+
+{% if result %}
+<div class="result">
+<h2>Converted Amount</h2>
+<p>{{ result }}</p>
+<p>Rate: {{ rate }}</p>
+</div>
+{% endif %}
+
+<a href="/dashboard" class="back">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

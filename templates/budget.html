@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budget Tracker</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #43e97b, #38f9d7);
+        }
+
+        .container {
+            width: 40%;
+            margin: auto;
+            margin-top: 60px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        button {
+            background: #43e97b;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Budget Tracker 💰</h1>
+
+    <form method="POST">
+        <input type="text" name="category" placeholder="Hotel / Food / Transport">
+        <input type="number" name="amount" placeholder="Amount">
+        <button type="submit">Save Expense</button>
+    </form>
+
+    <a href="/">Back</a>
+</div>
+
+</body>
+</html>

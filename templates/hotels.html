@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotels Finder</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#134E5E,#71B280);
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.container{
+width:550px;
+padding:40px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+border-radius:25px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-top:12px;
+border:none;
+border-radius:12px;
+outline:none;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+border:none;
+border-radius:12px;
+background:#00c6ff;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.result{
+margin-top:20px;
+padding:20px;
+background:rgba(255,255,255,0.08);
+border-radius:15px;
+}
+
+.back{
+display:block;
+text-align:center;
+margin-top:20px;
+color:#00c6ff;
+text-decoration:none;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1><i class="fa-solid fa-hotel"></i> Hotel Finder</h1>
+
+<form action="/hotels" method="POST">
+
+<input type="text" name="city" placeholder="Enter city" required>
+
+<button type="submit">Find Hotels</button>
+
+</form>
+
+{% if hotel_data %}
+<div class="result">
+<h2>Hotel Results</h2>
+<p>Name: {{ hotel_data.name }}</p>
+<p>Price: ${{ hotel_data.price }}/night</p>
+<p>Rating: {{ hotel_data.rating }}</p>
+</div>
+{% endif %}
+
+<a href="/dashboard" class="back">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

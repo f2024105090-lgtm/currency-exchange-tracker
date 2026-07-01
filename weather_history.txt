@@ -1,0 +1,7 @@
+Lahore | 31.7°C
+Paris | 24.9°C
+Paris | 24.9°C
+karachi | 29.3°C
+Tokyo | 21.8°C
+Istanbul | 27.1°C
+Tokyo | 21.7°C

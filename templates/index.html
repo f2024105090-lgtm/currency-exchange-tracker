@@ -1,125 +1,275 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Currency Converter</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TravelMate</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        .box {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            width: 350px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
+<style>
 
-        h2 {
-            margin-bottom: 20px;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
 
-        select, input {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
+body{
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    min-height:100vh;
+    color:white;
+    transition:0.4s;
+}
 
-        button {
-            width: 95%;
-            padding: 10px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-        }
+body.light{
+    background:linear-gradient(135deg,#f6f9fc,#ffffff,#dbeafe);
+    color:black;
+}
 
-        .convert-btn {
-            background: #2a5298;
-            color: white;
-        }
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 50px;
+}
 
-        .convert-btn:hover {
-            background: #1e3c72;
-        }
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
 
-        .history-btn {
-            background: #555;
-            color: white;
-        }
+.nav-buttons button{
+    padding:10px 20px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    margin-left:10px;
+}
 
-        .history-btn:hover {
-            background: #333;
-        }
+.hero{
+    text-align:center;
+    margin-top:40px;
+}
 
-        .result {
-            margin-top: 15px;
-            font-weight: bold;
-        }
+.hero h1{
+    font-size:55px;
+}
 
-        .rate {
-            margin-top: 10px;
-            color: green;
-            font-weight: bold;
-        }
+.hero p{
+    margin-top:15px;
+    font-size:18px;
+    opacity:0.8;
+}
 
-    </style>
+.container{
+    width:90%;
+    margin:auto;
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(18px);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0px 8px 25px rgba(0,0,0,0.3);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+}
+
+button{
+    margin-top:15px;
+    padding:12px;
+    width:100%;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#00c6ff;
+    color:white;
+    font-weight:bold;
+}
+
+.auth-box{
+    width:400px;
+    margin:auto;
+    margin-top:100px;
+    background:rgba(255,255,255,0.12);
+    padding:40px;
+    border-radius:20px;
+    backdrop-filter:blur(20px);
+    display:none;
+}
+
+.active{
+    display:block;
+}
+
+.hidden{
+    display:none;
+}
+
+.toggle-mode{
+    cursor:pointer;
+    font-size:22px;
+}
+
+@media(max-width:1000px){
+    .container{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
 </head>
-
 <body>
 
-<div class="box">
+<div class="navbar">
+    <div class="logo"><i class="fa-solid fa-plane"></i> TravelMate</div>
 
-    <h2>💱 Currency Converter</h2>
+    <div class="nav-buttons">
+        <button onclick="showLogin()">Login</button>
+        <button onclick="showSignup()">Sign Up</button>
+        <i class="fa-solid fa-moon toggle-mode" onclick="toggleMode()"></i>
+    </div>
+</div>
 
-    <form method="POST">
+<div id="loginBox" class="auth-box">
+    <h2>Login</h2>
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <button>Login</button>
+</div>
 
+<div id="signupBox" class="auth-box">
+    <h2>Sign Up</h2>
+    <input type="text" placeholder="Username">
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button>Create Account</button>
+</div>
+
+<div class="hero">
+    <h1>Travel Smart, Travel Better</h1>
+    <p>Your all-in-one intelligent travel planner</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+    <h2><i class="fa-solid fa-money-bill-transfer"></i> Currency Converter</h2>
+    <form action="/currency" method="POST">
+        <input type="number" name="amount" placeholder="Amount">
         <select name="from_currency">
-            {% for code in currencies.keys() %}
-                <option value="{{ code }}">{{ code }}</option>
-            {% endfor %}
+            <option>PKR</option>
+            <option>USD</option>
+            <option>EUR</option>
+            <option>TRY</option>
         </select>
-
         <select name="to_currency">
-            {% for code in currencies.keys() %}
-                <option value="{{ code }}">{{ code }}</option>
-            {% endfor %}
+            <option>USD</option>
+            <option>PKR</option>
+            <option>EUR</option>
+            <option>TRY</option>
         </select>
-
-        <input type="number" name="amount" placeholder="Enter amount" required>
-
-        <button class="convert-btn" type="submit">Convert</button>
-
-        <a href="/history">
-            <button class="history-btn" type="button">View History</button>
-        </a>
-
+        <button>Convert</button>
     </form>
+</div>
 
-    {% if live_rate %}
-        <div class="rate">
-            1 {{ from_currency }} = {{ live_rate }} {{ to_currency }}
-        </div>
-    {% endif %}
+<div class="card">
+    <h2><i class="fa-solid fa-map-location-dot"></i> Trip Planner</h2>
+    <form action="/trip" method="POST">
+        <input type="text" name="destination" placeholder="Destination">
+        <input type="number" name="days" placeholder="Days">
+        <input type="number" name="budget" placeholder="Budget">
+        <button>Save Trip</button>
+    </form>
+</div>
 
-    {% if result %}
-        <div class="result">
-            {{ result }}
-        </div>
-    {% endif %}
+<div class="card">
+    <h2><i class="fa-solid fa-wallet"></i> Budget Tracker</h2>
+    <form action="/budget" method="POST">
+        <input type="text" name="category" placeholder="Expense Category">
+        <input type="number" name="amount" placeholder="Amount">
+        <button>Add Expense</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2><i class="fa-solid fa-suitcase"></i> Packing Assistant</h2>
+    <form action="/packing" method="POST">
+        <select name="trip_type">
+            <option>winter</option>
+            <option>summer</option>
+            <option>normal</option>
+        </select>
+        <button>Generate</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2><i class="fa-solid fa-book"></i> Travel Journal</h2>
+    <form action="/journal" method="POST">
+        <input type="text" name="title" placeholder="Journal Title">
+        <textarea name="note" placeholder="Write your memories..."></textarea>
+        <button>Save</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2><i class="fa-solid fa-cloud-sun"></i> Weather Checker</h2>
+    <form action="/weather" method="POST">
+        <input type="text" name="city" placeholder="Enter city">
+        <button>Check Weather</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2><i class="fa-solid fa-clock-rotate-left"></i> History</h2>
+    <a href="/history">
+        <button>View History</button>
+    </a>
+</div>
 
 </div>
+
+<script>
+
+function toggleMode(){
+    document.body.classList.toggle("light");
+}
+
+function showLogin(){
+    document.getElementById("loginBox").classList.toggle("active");
+    document.getElementById("signupBox").classList.remove("active");
+}
+
+function showSignup(){
+    document.getElementById("signupBox").classList.toggle("active");
+    document.getElementById("loginBox").classList.remove("active");
+}
+
+</script>
 
 </body>
 </html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - TravelMate</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+min-height:100vh;
+transition:0.4s;
+}
+
+body.light{
+background:linear-gradient(135deg,#f8fafc,#ffffff,#dbeafe);
+color:black;
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 50px;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+.nav-right{
+display:flex;
+align-items:center;
+gap:25px;
+}
+
+.toggle{
+cursor:pointer;
+font-size:22px;
+}
+
+.logout-btn{
+text-decoration:none;
+color:white;
+background:#ff4d4d;
+padding:10px 18px;
+border-radius:10px;
+font-weight:bold;
+}
+
+.hero{
+padding:40px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.hero h1{
+font-size:42px;
+}
+
+.hero p{
+margin-top:10px;
+opacity:0.8;
+font-size:18px;
+}
+
+.clock{
+font-size:22px;
+font-weight:bold;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:20px 50px;
+}
+
+.stat-card{
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(15px);
+text-align:center;
+transition:0.4s;
+}
+
+.stat-card:hover{
+transform:translateY(-8px);
+}
+
+.container{
+padding:30px 50px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(18px);
+transition:0.4s;
+text-align:center;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card i{
+font-size:35px;
+margin-bottom:15px;
+}
+
+.card h2{
+margin-bottom:15px;
+font-size:22px;
+}
+
+.card p{
+font-size:15px;
+opacity:0.8;
+margin-bottom:20px;
+}
+
+button{
+padding:12px;
+width:100%;
+border:none;
+border-radius:10px;
+background:#00c6ff;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.footer{
+text-align:center;
+padding:25px;
+opacity:0.7;
+margin-top:20px;
+}
+
+@media(max-width:1000px){
+.container,.stats{
+grid-template-columns:1fr;
+}
+
+.hero{
+flex-direction:column;
+gap:20px;
+text-align:center;
+}
+}
+
+</style>
+</head>
+<body>
+
+<div class="navbar">
+
+<div class="logo">
+<i class="fa-solid fa-plane"></i> TravelMate
+</div>
+
+<div class="nav-right">
+<div id="clock" class="clock"></div>
+<i class="fa-solid fa-moon toggle" onclick="toggleMode()"></i>
+<a href="/logout" class="logout-btn">Logout</a>
+</div>
+
+</div>
+
+<div class="hero">
+
+<div>
+<h1>Welcome to TravelMate Dashboard</h1>
+<p>Your smart all-in-one travel planning system.</p>
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat-card">
+<h3><i class="fa-solid fa-globe"></i> Countries</h3>
+<p>190+</p>
+</div>
+
+<div class="stat-card">
+<h3><i class="fa-solid fa-money-bill-wave"></i> Currencies</h3>
+<p>150+</p>
+</div>
+
+<div class="stat-card">
+<h3><i class="fa-solid fa-plane"></i> Flights</h3>
+<p>Live Tracking</p>
+</div>
+
+<div class="stat-card">
+<h3><i class="fa-solid fa-hotel"></i> Hotels</h3>
+<p>Global Search</p>
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+<i class="fa-solid fa-money-bill-transfer"></i>
+<h2>Currency Converter</h2>
+<p>Convert currencies with real-time exchange rates.</p>
+<a href="/currency"><button>Open</button></a>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-cloud-sun"></i>
+<h2>Weather Checker</h2>
+<p>Check live weather updates around the world.</p>
+<a href="/weather"><button>Open</button></a>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-plane-departure"></i>
+<h2>Flights Finder</h2>
+<p>Search live flights and ticket estimates.</p>
+<a href="/flights"><button>Open</button></a>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-hotel"></i>
+<h2>Hotels Finder</h2>
+<p>Find premium hotels and accommodations.</p>
+<a href="/hotels"><button>Open</button></a>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-wallet"></i>
+<h2>Budget Packages</h2>
+<p>Generate smart travel packages based on your budget.</p>
+<a href="/packages"><button>Open</button></a>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<h2>Travel History</h2>
+<p>Track all your past travel activities and records.</p>
+<a href="/history"><button>Open</button></a>
+</div>
+
+</div>
+
+<div class="footer">
+TravelMate © 2026 | Smart Travel Companion
+</div>
+
+<script>
+
+function toggleMode(){
+document.body.classList.toggle("light");
+}
+
+function updateClock(){
+let now = new Date();
+document.getElementById("clock").innerHTML = now.toLocaleTimeString();
+}
+
+setInterval(updateClock,1000);
+
+</script>
+
+</body>
+</html>
